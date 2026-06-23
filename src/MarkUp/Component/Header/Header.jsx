@@ -30,7 +30,7 @@ console.log("Role:", employee?.employee_role);
                 <div className="inner-container">
                     <div className="left-column">
                         <div className="text"># Enjoy The Beso While We fix your car</div>
-                        <div className="office-hour">Monday to Saturday</div>
+                        <div className="office-hour">Monday to Saturday 24 hours</div>
                     </div>
                     <div className="right-column">
                         {isLogged ? (
