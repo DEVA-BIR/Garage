@@ -42,17 +42,34 @@ const CustomerList = () => {
 
   // ================= SEARCH =================
   const filteredCustomers = customers.filter((customer) => {
-    const search = searchTerm.toLowerCase();
+  const search = searchTerm.toLowerCase();
 
-    return (
-      customer.customer_id.toString().includes(search) ||
-      customer.customer_first_name.toLowerCase().includes(search) ||
-      customer.customer_last_name.toLowerCase().includes(search) ||
-      customer.customer_email.toLowerCase().includes(search) ||
-      customer.customer_phone_number.toLowerCase().includes(search)||
-      customer.active_customer_status.toLowerCase().includes(search)
-    );
-  });
+  return (
+    String(customer.customer_id || "")
+      .toLowerCase()
+      .includes(search) ||
+
+    String(customer.customer_first_name || "")
+      .toLowerCase()
+      .includes(search) ||
+
+    String(customer.customer_last_name || "")
+      .toLowerCase()
+      .includes(search) ||
+
+    String(customer.customer_email || "")
+      .toLowerCase()
+      .includes(search) ||
+
+    String(customer.customer_phone_number || "")
+      .toLowerCase()
+      .includes(search) ||
+
+    String(customer.active_customer_status ? "yes" : "no")
+      .toLowerCase()
+      .includes(search)
+  );
+});
 
   // ================= PAGINATION =================
   const totalPages = Math.ceil(filteredCustomers.length / itemsPerPage);
