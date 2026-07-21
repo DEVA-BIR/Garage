@@ -150,47 +150,63 @@ async function createOrder(orderData) {
   }
 }
 
+
 // GET ALL ORDERS
 async function getAllOrders() {
   try {
     const query = `
-     SELECT 
-  o.order_id,
-  o.order_date,
-  o.active_order,
+    SELECT 
+      o.order_id,
+      o.order_date,
+      o.active_order,
 
-  c.customer_first_name,
-  c.customer_last_name,
+      ei.employee_first_name,
+      ei.employee_last_name,
 
-  v.vehicle_make,
-  v.vehicle_model,
-  v.vehicle_year,
+      c.customer_first_name,
+      c.customer_last_name,
 
-  oi.order_total_price,
-  oi.estimated_completion_date,
+      ci.customer_email,
+      ci.customer_phone_number,
 
-  os.order_status
+      v.vehicle_make,
+      v.vehicle_model,
+      v.vehicle_year,
+      v.vehicle_tag,
 
-FROM orders o
+      oi.order_total_price,
+      oi.estimated_completion_date,
 
-JOIN customer_identifier ci 
-  ON o.customer_id = ci.customer_id
+      os.order_status
 
-JOIN customer_info c 
-  ON ci.customer_id = c.customer_id
+    FROM orders o
 
-JOIN customer_vehicle_info v 
-  ON o.vehicle_id = v.vehicle_id
+    JOIN employee e
+      ON o.employee_id = e.employee_id
 
-JOIN order_info oi 
-  ON o.order_id = oi.order_id
+    JOIN employee_info ei
+      ON e.employee_id = ei.employee_id
 
-JOIN order_status os 
-  ON o.order_id = os.order_id
+    JOIN customer_identifier ci 
+      ON o.customer_id = ci.customer_id
 
-ORDER BY o.order_id DESC;
+    JOIN customer_info c 
+      ON ci.customer_id = c.customer_id
+
+    JOIN customer_vehicle_info v 
+      ON o.vehicle_id = v.vehicle_id
+
+    JOIN order_info oi 
+      ON o.order_id = oi.order_id
+
+    JOIN order_status os 
+      ON o.order_id = os.order_id
+
+    ORDER BY o.order_id DESC;
     `;
+
     const rows = await conn.query(query);
+
     return rows;
 
   } catch (error) {
