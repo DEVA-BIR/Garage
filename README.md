@@ -13,6 +13,7 @@ A full-stack web application designed to streamline garage operations by managin
 ## ✨ Features
 
 - 🔐 Secure JWT Authentication
+- 🔍 Search & Filter Functionality
 - 👨‍🔧 Employee Management (CRUD)
 - 👥 Customer Management (CRUD)
 - 🚗 Vehicle Registration & Management
@@ -23,6 +24,7 @@ A full-stack web application designed to streamline garage operations by managin
 - 💾 MySQL Database Integration
 - ✅ Form Validation & Error Handling
 - ☁️ Cloud Deployment
+  
 
 ---
 
